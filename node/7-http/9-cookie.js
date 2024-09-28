@@ -10,7 +10,7 @@ const server = http.createServer((req, res) => {
 
     let counter = +cookies.counter || 0;
 
-    res.setHeader("Set-Cookie", `counter=${++counter}; Max-Age=3000; httpOnly; Secure; SameSite=None`);
+    res.setHeader("Set-Cookie", `counter=${++counter}; Max-Age=3000; httpOnly; Secure; SameSite=None; path=/blog;`);
   }
 
   // SameSite => None | Lax | Strict

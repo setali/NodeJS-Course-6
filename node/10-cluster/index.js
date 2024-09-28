@@ -2,6 +2,8 @@ const http = require("http");
 const cpuCounts = require("os").cpus().length;
 const cluster = require("cluster");
 
+// We can share TCP connection in custer subprocesses
+
 if (cluster.isMaster) {
   console.log("Master is running on: ", process.pid, cluster.isMaster);
   for (let i = 0; i < cpuCounts; i++) {

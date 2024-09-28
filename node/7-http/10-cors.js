@@ -15,3 +15,5 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(3000, () => console.log("Running oun port 3000"));
+
+axios("/api/product/1")
