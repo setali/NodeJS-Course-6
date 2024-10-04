@@ -1,14 +1,20 @@
-import path from "path";
-
 export function home(req, res) {
-  const filePath = path.resolve(__dirname, "..", "views", "index.html");
-  res.sendFile(filePath);
+  res.render("index", {
+    title: "Home Page",
+    content: "This is Home Page",
+  });
 }
 
 export function about(req, res) {
-  res.send("About Page");
+  res.render("about", {
+    title: "About Page",
+    content: "This is About Page",
+  });
 }
 
 export function contact(req, res) {
-  res.send("Contact Page");
+  res.render("contact", {
+    title: "Contact Page",
+    content: "This is Contact Page",
+  });
 }

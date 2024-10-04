@@ -1,0 +1,19 @@
+<%- include('../../layouts/admin-top.ejs') %>
+
+<div>
+  <div class="flex py-2 gap-4 items-baseline">
+    <div class="text-sm">ID</div>
+    <div class="text-lg font-bold"><%= article.id %></div>
+  </div>
+  <div class="flex py-2 gap-4 items-baseline">
+    <div class="text-sm">Text</div>
+    <div class="text-lg font-bold"><%= article.text %></div>
+  </div>
+</div>
+
+<div class="flex flex-col">
+  <a href="/admin/article">Back to list</a>
+  <a href="/admin/article/<%= article.id %>/edit">Edit</a>
+</div>
+
+<%- include('../../layouts/admin-bottom.ejs') %>

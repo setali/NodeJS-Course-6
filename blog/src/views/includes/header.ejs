@@ -1,0 +1,19 @@
+<header class="flex justify-between border p-4">
+  <div>
+    <% const links = [ {title: 'Home', href: '/'}, {title: 'About us', href:
+    '/about'}, {title: 'Contact', href: '/contact'}] %>
+    <ul class="flex space-x-4">
+      <% for (const link of links) { %>
+      <li>
+        <a href="<%= link.href %>"> <%= link.title %> </a>
+      </li>
+      <% } %>
+    </ul>
+  </div>
+  <div>
+    <ul class="flex space-x-4">
+      <li><a href="/login">Login</a></li>
+      <li><a href="/register">Register</a></li>
+    </ul>
+  </div>
+</header>

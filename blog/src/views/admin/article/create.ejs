@@ -1,0 +1,23 @@
+<%- include('../../layouts/admin-top.ejs') %>
+
+<form action="/admin/article" method="post">
+  <div class="p-4">
+    <label>Title</label>
+    <input type="text" name="title" />
+  </div>
+
+  <div class="p-4">
+    <label>Text</label>
+    <textarea name="text"></textarea>
+  </div>
+  <div class="p-4">
+    <button
+      class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md"
+      type="submit"
+    >
+      Save
+    </button>
+  </div>
+</form>
+
+<%- include('../../layouts/admin-bottom.ejs') %>

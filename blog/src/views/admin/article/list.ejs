@@ -1,0 +1,30 @@
+<%- include('../../layouts/admin-top.ejs') %>
+
+<div>
+  <a href="/admin/article/create" class="underline">Add Article</a>
+  <div class="py-4">
+    <table class="min-w-full bg-white border border-gray-30">
+      <thead>
+        <tr>
+          <th class="border">ID</th>
+          <th class="border">Title</th>
+          <th class="border">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for(const article of articles) { %>
+        <tr>
+          <td class="border"><%= article.id %></td>
+          <td class="border"><%= article.title %></td>
+          <td class="border">
+            <a href="/admin/article/<%= article.id %>">Show</a>
+            <a href="/admin/article/<%= article.id %>/edit">Edit</a>
+          </td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<%- include('../../layouts/admin-bottom.ejs') %>
