@@ -16,9 +16,10 @@
         <tr>
           <td class="border"><%= article.id %></td>
           <td class="border"><%= article.title %></td>
-          <td class="border">
+          <td class="border flex gap-2">
             <a href="/admin/article/<%= article.id %>">Show</a>
             <a href="/admin/article/<%= article.id %>/edit">Edit</a>
+            <%- include('./delete-form.ejs', {article}) %>
           </td>
         </tr>
         <% } %>

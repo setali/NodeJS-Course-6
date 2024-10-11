@@ -4,8 +4,12 @@
   "description": "Blog for Node.js Students",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec  babel-node src/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon -e js,ejs --exec babel-node src/app.js",
+    "prod": "babel-node src/app.js",
+    "css": "tailwindcss -i ./public/styles/main.css -o ./public/styles/output.css",
+    "dev:css": "tailwindcss -i ./public/styles/main.css -o ./public/styles/output.css --watch",
+    "start": "npm run dev:css | npm run dev",
+    "start:prod": "npm run css && npm run prod"
   },
   "author": "",
   "license": "ISC",
