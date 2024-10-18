@@ -1,0 +1,23 @@
+<%- include('../layouts/main-top.ejs') %>
+
+<form action="/register" method="post">
+  <div class="p-4">
+    <label>Username</label>
+    <input type="text" name="username" />
+  </div>
+  <div class="p-4">
+    <label>Password</label>
+    <input type="password" name="password" />
+  </div>
+
+  <div class="p-4">
+    <button
+      class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md"
+      type="submit"
+    >
+      Register
+    </button>
+  </div>
+</form>
+
+<%- include('../layouts/main-bottom.ejs') %>

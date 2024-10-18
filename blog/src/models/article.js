@@ -1,9 +1,16 @@
-import { BaseModel, create } from "../store";
+import { BaseModel, sequelize, DataTypes } from "../config/database";
 
-class Article extends BaseModel {
-  static fields = ["title", "text"];
+class Article extends BaseModel {}
 
-  static entityName = "articles";
-}
+Article.init(
+  {
+    title: { type: DataTypes.STRING, allowNull: false },
+    text: { type: DataTypes.TEXT, allowNull: false },
+  },
+  {
+    sequelize,
+    modelName: "article",
+  }
+);
 
-export default create(Article);
+export default Article;

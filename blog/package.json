@@ -4,7 +4,7 @@
   "description": "Blog for Node.js Students",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon -e js,ejs --exec babel-node src/app.js",
+    "dev": "nodemon -e js,ejs --exec babel-node src/index.js",
     "prod": "babel-node src/app.js",
     "css": "tailwindcss -i ./public/styles/main.css -o ./public/styles/output.css",
     "dev:css": "tailwindcss -i ./public/styles/main.css -o ./public/styles/output.css --watch",
@@ -14,10 +14,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "express": "^4.21.0",
-    "method-override": "^3.0.0"
+    "express-async-errors": "^3.1.1",
+    "method-override": "^3.0.0",
+    "mysql2": "^3.11.3",
+    "sequelize": "^6.37.4"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
