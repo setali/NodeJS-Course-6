@@ -6,6 +6,7 @@ import methodOverride from "./middlewares/method-override";
 import { sequelize } from "./config/database";
 import auth from "./middlewares/auth";
 import session from "./utils/session";
+import cors from 'cors'
 
 export async function bootstrap() {
   const app = express();
@@ -15,6 +16,7 @@ export async function bootstrap() {
   app.set("views", path.resolve(__dirname, "views"));
   app.set("view engine", "ejs");
 
+  app.use(cors());
   app.use(session());
   app.use(auth);
 
