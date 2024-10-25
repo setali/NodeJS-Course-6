@@ -1,0 +1,13 @@
+<div>
+    <ul class="flex gap-3 justify-center py-5">
+    <% if (hasPervPage) { %>
+        <li><a href="?page=<%= pervPage %>">Perv</a></li>
+    <% } %>
+    <% for(let i = 1; i <= pages; i++) { %>
+    <li class="<%= page === i ? "text-green-600" : "" %>"><a href="?page=<%- i %>"><%- i %></a></li>
+    <% } %>
+    <% if (hasNextPage) { %>
+        <li><a href="?page=<%= nextPage %>">Next</a></li>
+    <% } %>
+    </ul>
+</div>

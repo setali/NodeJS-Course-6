@@ -1,21 +1,28 @@
 import { BaseController } from "..";
 import Article from "../../models/article";
-import { BadRequestError, NotFoundError } from "../../utils/errors";
+import {
+  BadRequestError,
+  ForbiddenError,
+  NotFoundError,
+} from "../../utils/errors";
 
 class ArticleController extends BaseController {
   async list(req, res) {
-    const articles = await Article.findAll();
+    const data = await Article.findPaginate(req.query.page, {
+      include: ["user"],
+    });
 
     res.render("admin/article/list", {
       title: "Article list",
-      articles,
+      user: req.user,
+      ...data,
     });
   }
 
   async get(req, res) {
     const { id } = req.params;
 
-    const article = await Article.find(+id);
+    const article = await Article.find(+id, { include: ["user"] });
 
     if (!article) {
       throw new NotFoundError("Article not found");
@@ -24,12 +31,14 @@ class ArticleController extends BaseController {
     res.render("admin/article/show", {
       title: article.title,
       article,
+      user: req.user,
     });
   }
 
   create(req, res) {
     res.render("admin/article/create", {
       title: "Create Article",
+      user: req.user,
     });
   }
 
@@ -40,7 +49,7 @@ class ArticleController extends BaseController {
       throw new BadRequestError("Title and Text is required!");
     }
 
-    const article = new Article({ title, text });
+    const article = new Article({ title, text, userId: req.user.id });
     await article.save();
 
     res.redirect("/admin/article");
@@ -58,6 +67,7 @@ class ArticleController extends BaseController {
     res.render("admin/article/edit", {
       title: `Edit ${article.title}`,
       article,
+      user: req.user,
     });
   }
 
@@ -91,6 +101,10 @@ class ArticleController extends BaseController {
 
     if (!article) {
       throw new NotFoundError("Article not found");
+    }
+
+    if (article.userId !== req.user.id) {
+      throw new ForbiddenError();
     }
 
     await article.remove();

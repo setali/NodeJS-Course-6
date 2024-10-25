@@ -1,4 +1,5 @@
 import { BaseModel, sequelize, DataTypes } from "../config/database";
+import User from "./user";
 
 class Article extends BaseModel {}
 
@@ -12,5 +13,8 @@ Article.init(
     modelName: "article",
   }
 );
+
+Article.belongsTo(User)
+User.hasMany(Article)
 
 export default Article;

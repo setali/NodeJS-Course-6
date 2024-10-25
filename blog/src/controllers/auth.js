@@ -5,10 +5,18 @@ import bcrypt from "bcrypt";
 
 class AuthController extends BaseController {
   loginPage(req, res) {
+    if (req.user) {
+      return res.redirect("/");
+    }
+
     res.render("auth/login", { title: "Login" });
   }
 
   async login(req, res) {
+    if (req.user) {
+      return res.redirect("/");
+    }
+
     const { username, password } = req.body;
 
     if (!username || !password) {
@@ -25,14 +33,24 @@ class AuthController extends BaseController {
       throw new BadRequestError("Credential error!");
     }
 
-    res.json(user);
+    req.session.user = user;
+
+    res.redirect("/");
   }
 
   registerPage(req, res) {
+    if (req.user) {
+      return res.redirect("/");
+    }
+
     res.render("auth/register", { title: "Register" });
   }
 
   async register(req, res) {
+    if (req.user) {
+      return res.redirect("/");
+    }
+
     const { username, password } = req.body;
 
     if (!username || !password) {
@@ -52,6 +70,14 @@ class AuthController extends BaseController {
 
       throw new Error(error);
     }
+  }
+
+  logout(req, res) {
+    req.session.destroy((error) => {
+      if (!error) {
+        res.redirect(req.headers.referer);
+      }
+    });
   }
 }
 

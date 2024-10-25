@@ -1,0 +1,13 @@
+<%- include('../layouts/main-top.ejs') %>
+
+<div class="flex flex-col gap-6">
+  <% for(const article of items) { %>
+  <div class="flex gap-5 border-b-2 border-blue-700">
+    <div><%= article.title %></div>
+    <div>author: <%= article.user.username %></div>
+  </div>
+  <% } %>
+</div>
+
+<%- include('../includes/pagination.ejs') %> <%-
+include('../layouts/main-bottom.ejs') %>

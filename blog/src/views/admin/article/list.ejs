@@ -8,14 +8,16 @@
         <tr>
           <th class="border">ID</th>
           <th class="border">Title</th>
+          <th class="border">User</th>
           <th class="border">Action</th>
         </tr>
       </thead>
       <tbody>
-        <% for(const article of articles) { %>
+        <% for(const article of items) { %>
         <tr>
           <td class="border"><%= article.id %></td>
           <td class="border"><%= article.title %></td>
+          <td class="border"><%= article.user.username %></td>
           <td class="border flex gap-2">
             <a href="/admin/article/<%= article.id %>">Show</a>
             <a href="/admin/article/<%= article.id %>/edit">Edit</a>
@@ -25,6 +27,8 @@
         <% } %>
       </tbody>
     </table>
+
+    <%- include('../../includes/pagination.ejs') %>
   </div>
 </div>
 
