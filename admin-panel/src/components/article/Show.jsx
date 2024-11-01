@@ -4,6 +4,8 @@ import { useParams } from "react-router";
 import request from "../../utils/request";
 import Loading from "../general/Loading";
 import { Link } from "react-router-dom";
+import Page404 from "../general/404";
+import Error from "../general/Error";
 
 export default function Show() {
   const { id } = useParams();
@@ -14,6 +16,16 @@ export default function Show() {
   });
 
   if (isLoading) return <Loading />;
+
+  console.log(error);
+  if (error) {
+    return (
+      <Error
+        status={error.response.data.code}
+        title={error.response.data.message}
+      />
+    );
+  }
 
   return (
     <div>

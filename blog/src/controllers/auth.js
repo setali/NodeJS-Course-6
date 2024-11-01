@@ -23,7 +23,9 @@ class AuthController extends BaseController {
       throw new BadRequestError("Username and Password are required!");
     }
 
-    const user = await User.findOne({ where: { username } });
+    const user = await User.scope("withPassword").findOne({
+      where: { username },
+    });
 
     if (!user) {
       throw new BadRequestError("Credential error!");

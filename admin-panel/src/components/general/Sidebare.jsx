@@ -21,6 +21,10 @@ const items = [
         key: "article-list",
         label: <Link to={"/article"}>List</Link>,
       },
+      {
+        key: "article-add",
+        label: <Link to={"/article/add"}>Create Article</Link>,
+      },
     ],
   },
   {

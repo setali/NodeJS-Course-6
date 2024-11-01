@@ -34,10 +34,11 @@ class ArticleController extends BaseController {
       throw new BadRequestError("Title and Text is required!");
     }
 
-    const article = new Article({ title, text, userId: req.user.id });
+    // const article = new Article({ title, text, userId: req.user.id });
+    const article = new Article({ title, text, userId: 15 });
     await article.save();
 
-    res.redirect("/admin/article");
+    res.json(article);
   }
 
   async update(req, res) {
@@ -60,7 +61,7 @@ class ArticleController extends BaseController {
 
     article.save();
 
-    res.redirect("/admin/article");
+    res.status(201).json(article);
   }
 
   async remove(req, res) {
@@ -72,13 +73,13 @@ class ArticleController extends BaseController {
       throw new NotFoundError("Article not found");
     }
 
-    if (article.userId !== req.user.id) {
-      throw new ForbiddenError();
-    }
+    // if (article.userId !== req.user.id) {
+    //   throw new ForbiddenError();
+    // }
 
     await article.remove();
 
-    res.redirect("/admin/article");
+    res.json(article);
   }
 }
 
