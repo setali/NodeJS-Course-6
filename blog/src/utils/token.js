@@ -7,10 +7,10 @@ export function generateRefreshToken() {
 
 export function generateAccessToken(user) {
   return jwt.sign(
-    { id: user.id, username: user.username },
+    { id: user.id, username: user.username, role: user.role },
     process.env.JWT_SECRET,
     {
-      expiresIn: "10s",
+      expiresIn: "1000s",
     }
   );
 }

@@ -7,6 +7,7 @@ Article.init(
   {
     title: { type: DataTypes.STRING, allowNull: false },
     text: { type: DataTypes.TEXT, allowNull: false },
+    image: { type: DataTypes.TEXT, allowNull: true },
   },
   {
     sequelize,
@@ -14,7 +15,7 @@ Article.init(
   }
 );
 
-Article.belongsTo(User)
-User.hasMany(Article)
+Article.belongsTo(User);
+User.hasMany(Article);
 
 export default Article;

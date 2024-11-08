@@ -1,0 +1,27 @@
+<%- include('../layouts/main-top.ejs') %>
+
+<div class="flex gap-6">
+  <div
+    class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+  >
+    <a href="#" >
+      <img
+        class="rounded-t-lg"
+        src="/<%= article.image %>"
+        alt="<%= article.title %>"
+      />
+    </a>
+    <div class="p-5">
+      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+        author: <%= article.user.username %>
+      </p>
+    </div>
+    <div class="p-5">
+      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+        <%= article.text %>
+      </p>
+    </div>
+  </div>
+</div>
+
+<%- include('../layouts/main-bottom.ejs') %>

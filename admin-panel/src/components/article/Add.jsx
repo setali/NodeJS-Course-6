@@ -3,6 +3,7 @@ import { Button, Form, Input, message } from "antd";
 import { useMutation } from "@tanstack/react-query";
 import request from "../../utils/request";
 import { useNavigate } from "react-router";
+import Uploader from "../utils/Uploader";
 
 export default function Add() {
   const navigate = useNavigate();
@@ -20,30 +21,22 @@ export default function Add() {
       .catch((err) => message.error("Error!"));
   };
 
+  function normFile(e) {
+    console.log("====>", e);
+  }
+
   return (
     <Form name="basic" onFinish={onFinish}>
-      <Form.Item
-        label="Title"
-        name="title"
-        rules={[
-          {
-            required: true,
-          },
-        ]}
-      >
+      <Form.Item label="Title" name="title">
         <Input />
       </Form.Item>
 
-      <Form.Item
-        label="Text"
-        name="text"
-        rules={[
-          {
-            required: true,
-          },
-        ]}
-      >
+      <Form.Item label="Text" name="text">
         <Input.TextArea />
+      </Form.Item>
+
+      <Form.Item label="Image" name="image" getValueFromEvent={normFile}>
+        <Uploader />
       </Form.Item>
 
       <Form.Item>

@@ -5,6 +5,7 @@ import {
   ForbiddenError,
   NotFoundError,
 } from "../../utils/errors";
+import { log } from "../../utils/logger";
 
 class ArticleController extends BaseController {
   async list(req, res) {
@@ -52,6 +53,8 @@ class ArticleController extends BaseController {
     const article = new Article({ title, text, userId: req.user.id });
     await article.save();
 
+    log({ message: "article:create", metadata: { user: req.user, article } });
+
     res.redirect("/admin/article");
   }
 
@@ -91,6 +94,8 @@ class ArticleController extends BaseController {
 
     article.save();
 
+    log({ message: "article:update", metadata: { user: req.user, article } });
+
     res.redirect("/admin/article");
   }
 
@@ -103,11 +108,13 @@ class ArticleController extends BaseController {
       throw new NotFoundError("Article not found");
     }
 
-    if (article.userId !== req.user.id) {
-      throw new ForbiddenError();
-    }
+    // if (article.userId !== req.user.id) {
+    //   throw new ForbiddenError();
+    // }
 
     await article.remove();
+
+    log({ message: "article:remove", metadata: { user: req.user, article } });
 
     res.redirect("/admin/article");
   }

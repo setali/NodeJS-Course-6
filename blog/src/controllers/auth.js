@@ -2,6 +2,7 @@ import { BaseController } from ".";
 import { BadRequestError } from "../utils/errors";
 import User from "../models/user";
 import bcrypt from "bcrypt";
+import { log } from "../utils/logger";
 
 class AuthController extends BaseController {
   loginPage(req, res) {
@@ -35,8 +36,12 @@ class AuthController extends BaseController {
       throw new BadRequestError("Credential error!");
     }
 
+    user.set("token", undefined);
+    user.set("password", undefined);
+
     req.session.user = user;
 
+    log({ message: "user:login", metadata: { user } });
     res.redirect("/");
   }
 
@@ -77,6 +82,7 @@ class AuthController extends BaseController {
   logout(req, res) {
     req.session.destroy((error) => {
       if (!error) {
+        log({ message: "user:logout", metadata: { user: req.user } });
         res.redirect(req.headers.referer);
       }
     });

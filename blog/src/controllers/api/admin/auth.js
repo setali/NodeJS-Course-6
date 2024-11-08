@@ -16,10 +16,6 @@ class AuthController extends BaseController {
   async login(req, res) {
     const { username, password } = req.body;
 
-    if (!username || !password) {
-      throw new BadRequestError("Username and Password are required!");
-    }
-
     const user = await User.scope("withPassword").findOne({
       where: { username },
     });
@@ -51,7 +47,9 @@ class AuthController extends BaseController {
   async getToken(req, res) {
     const { refreshToken } = req.body;
 
-    const user = await User.findOne({ where: { token: refreshToken } });
+    const user = await User.scope("withPassword").findOne({
+      where: { token: refreshToken },
+    });
 
     if (!user) {
       throw new NotFoundError("User not found");

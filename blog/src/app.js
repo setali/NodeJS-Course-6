@@ -6,7 +6,7 @@ import methodOverride from "./middlewares/method-override";
 import { sequelize } from "./config/database";
 import auth from "./middlewares/auth";
 import session from "./utils/session";
-import cors from 'cors'
+import cors from "cors";
 
 export async function bootstrap() {
   const app = express();
@@ -21,7 +21,7 @@ export async function bootstrap() {
   app.use(auth);
 
   await sequelize.authenticate();
-  await sequelize.sync();
+  await sequelize.sync({ alter: true });
 
   app.use(express.static("public"));
   app.use(methodOverride);

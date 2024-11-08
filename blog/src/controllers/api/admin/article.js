@@ -1,10 +1,6 @@
 import { BaseController } from "../..";
 import Article from "../../../models/article";
-import {
-  BadRequestError,
-  ForbiddenError,
-  NotFoundError,
-} from "../../../utils/errors";
+import { NotFoundError } from "../../../utils/errors";
 
 class ArticleController extends BaseController {
   async list(req, res) {
@@ -28,25 +24,16 @@ class ArticleController extends BaseController {
   }
 
   async add(req, res) {
-    const { title, text } = req.body;
+    const { title, text, image } = req.body;
 
-    if (!title || !text) {
-      throw new BadRequestError("Title and Text is required!");
-    }
-
-    // const article = new Article({ title, text, userId: req.user.id });
-    const article = new Article({ title, text, userId: 15 });
+    const article = new Article({ title, text, image, userId: req.user.id });
     await article.save();
 
     res.json(article);
   }
 
   async update(req, res) {
-    const { title, text } = req.body;
-
-    if (!title || !text) {
-      throw new BadRequestError("Title and Text is required!");
-    }
+    const { title, text, image } = req.body;
 
     const { id } = req.params;
 
@@ -58,6 +45,7 @@ class ArticleController extends BaseController {
 
     article.title = title;
     article.text = text;
+    article.image = image;
 
     article.save();
 
@@ -72,10 +60,6 @@ class ArticleController extends BaseController {
     if (!article) {
       throw new NotFoundError("Article not found");
     }
-
-    // if (article.userId !== req.user.id) {
-    //   throw new ForbiddenError();
-    // }
 
     await article.remove();
 
