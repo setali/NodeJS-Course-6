@@ -8,7 +8,7 @@ export const logger = winston.createLogger({
     // new winston.transports.File({ filename: "error.log", level: "error" }),
     // new winston.transports.File({ filename: "all.log" }),
     new winston.transports.MongoDB({
-      db: "mongodb://localhost:27006/blog",
+      db: process.env.MONGO_URI,
       collection: "log",
     }),
   ],
