@@ -16,7 +16,7 @@ export default (req, res, next) => {
       });
     }
   } else {
-    req.user = req.session.user;
+    req.user = req.session?.user;
     next();
   }
 };

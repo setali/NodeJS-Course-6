@@ -3,6 +3,7 @@ import {
   SettingOutlined,
   DashboardOutlined,
   EditOutlined,
+  PaperClipOutlined,
 } from "@ant-design/icons";
 import { Menu } from "antd";
 import { Link } from "react-router-dom";
@@ -10,7 +11,20 @@ const items = [
   {
     key: "dashboard",
     label: "Dashboard",
-    icon: <DashboardOutlined />,
+    icon: (
+      <Link to="/">
+        <DashboardOutlined />
+      </Link>
+    ),
+  },
+  {
+    key: "chat",
+    label: "Chat",
+    icon: (
+      <Link to="/chat">
+        <PaperClipOutlined />
+      </Link>
+    ),
   },
   {
     key: "articles",
@@ -62,7 +76,7 @@ export default function Sidebar() {
     <Menu
       onClick={onClick}
       style={{
-        width: 256,
+        width: "100%",
       }}
       defaultSelectedKeys={["dashboard"]}
       defaultOpenKeys={["articles"]}

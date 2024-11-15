@@ -4,6 +4,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import request from "../../utils/request";
 import { useNavigate, useParams } from "react-router";
 import Loading from "../general/Loading";
+import Uploader from "../utils/Uploader";
 
 export default function Edit() {
   const { id } = useParams();
@@ -32,29 +33,15 @@ export default function Edit() {
 
   return (
     <Form name="basic" onFinish={onFinish} initialValues={data}>
-      <Form.Item
-        label="Title"
-        name="title"
-        rules={[
-          {
-            required: true,
-          },
-        ]}
-      >
+      <Form.Item label="Title" name="title" rules={[{ required: true }]}>
         <Input />
       </Form.Item>
 
-      <Form.Item
-        label="Text"
-        name="text"
-        rules={[
-          {
-            required: true,
-          },
-        ]}
-      >
+      <Form.Item label="Text" name="text" rules={[{ required: true }]}>
         <Input.TextArea />
       </Form.Item>
+
+      <Uploader required defaultFile={data.image} />
 
       <Form.Item>
         <Button type="primary" htmlType="submit">

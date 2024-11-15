@@ -9,6 +9,7 @@ import Login from "./auth/login";
 import request from "../utils/request";
 import { getToken, removeRefreshToken, removeToken } from "../utils/tools";
 import Loading from "./general/Loading";
+import ChatApp from "./chat/ChatApp";
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -66,6 +67,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/article/*" element={<ArticleRouter />} />
+                <Route path="/chat" element={<ChatApp />} />
                 <Route path="*" element={<Page404 />} />
               </Routes>
             </Content>

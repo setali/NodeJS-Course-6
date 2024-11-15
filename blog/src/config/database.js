@@ -15,6 +15,7 @@ export const sequelize = new Sequelize(
 );
 
 function logQueries(query) {
+  return;
   console.log("Database query => ", query);
 }
 

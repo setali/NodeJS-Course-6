@@ -1,3 +1,5 @@
+import { jwtDecode } from "jwt-decode";
+
 const ACCESS_TOKEN_NAME = "accessToken";
 const REFRESH_TOKEN_NAME = "refreshToken";
 
@@ -23,4 +25,8 @@ export function setRefreshToken(token) {
 
 export function removeRefreshToken() {
   localStorage.removeItem(REFRESH_TOKEN_NAME);
+}
+
+export function getUserInfo() {
+  return jwtDecode(getToken());
 }

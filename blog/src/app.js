@@ -7,6 +7,11 @@ import { sequelize } from "./config/database";
 import auth from "./middlewares/auth";
 import session from "./utils/session";
 import cors from "cors";
+import http from "http";
+import socketIO from "socket.io";
+import chat from "./chat";
+
+global.__basedir = path.resolve(__dirname, "..");
 
 export async function bootstrap() {
   const app = express();
@@ -28,6 +33,25 @@ export async function bootstrap() {
   app.use(routes);
   app.use(errorHandler);
 
+  const server = http.createServer(app);
+
+  const io = new socketIO.Server(server, {
+    cors: {
+      origin: "*",
+      methods: ["GET", "POST"],
+    },
+  });
+
+  io.use((socket, next) => {
+    try {
+      auth(socket.request, {}, next);
+    } catch (error) {
+      next(error);
+    }
+  });
+
+  io.on("connection", (socket) => chat(socket, io));
+
   const port = process.env.PORT;
-  app.listen(port, () => console.log(`Server is running on port ${port}`));
+  server.listen(port, () => console.log(`Server is running on port ${port}`));
 }

@@ -1,6 +1,8 @@
 import { BaseController } from "../..";
 import Article from "../../../models/article";
 import { NotFoundError } from "../../../utils/errors";
+import fs from "fs";
+import path from "path";
 
 class ArticleController extends BaseController {
   async list(req, res) {
@@ -62,6 +64,12 @@ class ArticleController extends BaseController {
     }
 
     await article.remove();
+
+    const imagePath = path.resolve(__basedir, "public", article.image);
+
+    if (fs.existsSync(imagePath)) {
+      fs.unlinkSync(imagePath);
+    }
 
     res.json(article);
   }
