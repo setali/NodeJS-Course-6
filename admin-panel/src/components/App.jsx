@@ -5,7 +5,7 @@ import { Route, Routes } from "react-router";
 import Dashboard from "./general/Dashboard";
 import ArticleRouter from "./article/Router";
 import Page404 from "./general/404";
-import Login from "./auth/login";
+import Login from "./auth/Login";
 import request from "../utils/request";
 import { getToken, removeRefreshToken, removeToken } from "../utils/tools";
 import Loading from "./general/Loading";
