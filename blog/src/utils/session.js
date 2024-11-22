@@ -1,9 +1,8 @@
 import expressSession from "express-session";
 import RedisStore from "connect-redis";
-import Redis from "ioredis";
+import { redisClient } from "../config/redis";
 
 export default () => {
-  const redisClient = new Redis(process.env.REDIS_PORT);
   const store = new RedisStore({ client: redisClient });
 
   return expressSession({

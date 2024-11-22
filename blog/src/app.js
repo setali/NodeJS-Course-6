@@ -1,4 +1,5 @@
 import express from "express";
+import "express-async-errors";
 import routes from "./routes";
 import errorHandler from "./middlewares/error-handler";
 import path from "path";
@@ -52,6 +53,5 @@ export async function bootstrap() {
 
   io.on("connection", (socket) => chat(socket, io));
 
-  const port = process.env.PORT;
-  server.listen(port, () => console.log(`Server is running on port ${port}`));
+  return server;
 }

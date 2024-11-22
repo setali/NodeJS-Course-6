@@ -1,0 +1,4 @@
+https://medium.com/@evantohost/installing-mongodb-on-ubuntu-22-04-and-setup-7d701f9cce50
+https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-22-04
+https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-22-04
+https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-20-04

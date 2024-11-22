@@ -9,11 +9,14 @@
     "css": "tailwindcss -i ./public/styles/main.css -o ./public/styles/output.css",
     "dev:css": "tailwindcss -i ./public/styles/main.css -o ./public/styles/output.css --watch",
     "start": "npm run dev:css | npm run dev",
-    "start:prod": "npm run css && npm run prod"
+    "start:prod": "npm run css && npm run prod",
+    "test": "jest --detectOpenHandles",
+    "test:watch": "jest --watchAll --detectOpenHandles"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/jest": "^29.5.14",
     "bcrypt": "^5.1.1",
     "connect-redis": "^7.1.1",
     "cors": "^2.8.5",
@@ -24,6 +27,7 @@
     "express-jsonschema": "^1.1.6",
     "express-session": "^1.18.1",
     "ioredis": "^5.4.1",
+    "jest": "^29.7.0",
     "jsonwebtoken": "^9.0.2",
     "method-override": "^3.0.0",
     "multer": "^1.4.5-lts.1",
@@ -38,6 +42,7 @@
     "@babel/node": "^7.25.0",
     "@babel/preset-env": "^7.25.4",
     "nodemon": "^3.1.7",
+    "supertest": "^7.0.0",
     "tailwindcss": "^3.4.13"
   },
   "babel": {
