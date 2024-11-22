@@ -6,6 +6,7 @@ export default () => {
   const store = new RedisStore({ client: redisClient });
 
   return expressSession({
+    proxy: process.env.NODE_ENV === "production",
     store,
     secret: process.env.SECRET,
     resave: false,
